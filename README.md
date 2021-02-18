@@ -7,12 +7,12 @@ The file `TablitsaSynthesizer/PeriodicTable.py` contains the script used to gene
 This repository is still a work in progress. The current functionality is essentially the minimum required for its current use, namely producing audio data in the format required for the Tablitsa synthesizer. The core data-generation functions are rather simple at the moment and probably not of much use to others, so the primary purpose of making this repository available is to allow anyone who is interested in using Tablitsa to make their own wavetables. For this, I recommend using the `PeriodicTable.py` script, which generates all 118 wavetables in the proper format. By editing the global variables of this script, you can adjust the harmonic content and relative amplitudes of the wavetables' frequency components, generating new timbres. The `wt_io.py` module takes care of formating the files into so that they are usable for Tablitsa, but for reference, the `.wt` format is as following:
 
 *Header*: (24 bytes total)
-Length of audio data, in samples: 32-bit unsigned integer
-Largest mipmap level\*, in samples: 32-bit unsigned integer
-Smallest mipmap level, in samples: 32-bit unsigned integer
-Number of unique waveforms (timbres): 32-bit unsigned integer
-Oversampling, as ratio of the number of samples in a mipmap level to maximum number of samples to be read during a single cycle of that level: 32-bit unsigned integer
-Samples, of arbitrary number: 64-bit float
+* Length of audio data, in samples: 32-bit unsigned integer
+* Largest mipmap level\*, in samples: 32-bit unsigned integer
+* Smallest mipmap level, in samples: 32-bit unsigned integer
+* Number of unique waveforms (timbres): 32-bit unsigned integer
+* Oversampling, as ratio of the number of samples in a mipmap level to maximum number of samples to be read during a single cycle of that level: 32-bit unsigned integer
+* Samples, of arbitrary number: 64-bit float
 
 \* To decrease aliasing, wavetables are stored as bandlimited mipmaps, each a factor of two smaller than the last. "Waveform", "wavetable position", or "timbre" refers to the prototypical signal of arbitrary length. "Mipmap" refers to a series of waveforms sampled at defined frequencies and bandlimited to a frequency defined by a certain multiple of the fundamental frequency (one cycle of the waveform at the given sample rate). "Mipmap level" refers to one of the sampled waveforms in this list, and is the buffer from which audio data is read in a synthesizer program. The correct mipmap level---that which provides maximum harmonic content with minimal aliasing---for a given frequency (in Hz) can be calculated as follows, where `n` is the number of samples in the mipmap level:
 
