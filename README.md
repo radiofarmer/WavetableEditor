@@ -12,6 +12,7 @@ This repository is still a work in progress. The current functionality is essent
 * Smallest mipmap level, in samples: 32-bit unsigned integer
 * Number of unique waveforms (timbres): 32-bit unsigned integer
 * Oversampling, as ratio of the number of samples in a mipmap level to maximum number of samples to be read during a single cycle of that level: 32-bit unsigned integer
+*Data*
 * Samples, of arbitrary number: 64-bit float
 
 \* To decrease aliasing, wavetables are stored as bandlimited mipmaps, each a factor of two smaller than the last. "Waveform", "wavetable position", or "timbre" refers to the prototypical signal of arbitrary length. "Mipmap" refers to a series of waveforms sampled at defined frequencies and bandlimited to a frequency defined by a certain multiple of the fundamental frequency (one cycle of the waveform at the given sample rate). "Mipmap level" refers to one of the sampled waveforms in this list, and is the buffer from which audio data is read in a synthesizer program. The correct mipmap level---that which provides maximum harmonic content with minimal aliasing---for a given frequency (in Hz) can be calculated as follows, where `n` is the number of samples in the mipmap level:
