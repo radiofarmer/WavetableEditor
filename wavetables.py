@@ -62,7 +62,7 @@ def zero_phase(h, *args, **kwargs):
     return np.zeros(h.shape[0])
 
 
-class HarmonicSeries():
+class HarmonicSeries:
 
     def __init__(self, start, end, period, amp_func, phase_func=None, h_shift_func=None, **kwargs):
         if phase_func is None:
