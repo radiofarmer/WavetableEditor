@@ -1,6 +1,4 @@
-import numpy as np
-import math
-from wavetables import *
+from WavetableEditor.Wavetable import *
 
 
 def gaussian(x, m, s, scale=False):
@@ -263,7 +261,7 @@ def make_wavetable(h_start, h_end, state, amp_func, period, amp_scale, phase_fun
 
 
 if __name__ == "__main__":
-    start = names.index("Zirconium")
+    start = names.index("Hydrogen")
 
     for sym, name, pd, g in zip(symbols[start:len(oxidation)], names[start:len(oxidation)],
                                 periods[start:len(oxidation)], groups[start:len(oxidation)]):
@@ -297,9 +295,9 @@ if __name__ == "__main__":
 
         if max_cycles > 12:
             print(name, "had", max_cycles, "cycles")
-        wt_io.export_mipmap_bytes(wt, "Wavetables\\", name + ".wt", max_fps=2 ** 14,
-                                  cycles_per_level=max_cycles, oversampling=8,
-                                  levels=[max(2 ** n, 1024) for n in range(14, 3, -1)],
-                                  limits=[int(2 ** n) for n in range(12, 1, -1)],
-                                  scale_to=0.5)
+        IO.export_mipmap_bytes(wt, "Wavetables\\", name + ".wt", max_fps=2 ** 14,
+                               cycles_per_level=max_cycles, oversampling=8,
+                               levels=[max(2 ** n, 1024) for n in range(14, 3, -1)],
+                               limits=[int(2 ** n) for n in range(12, 1, -1)],
+                               scale_to=0.5)
         print("Saved wavetable for", name)

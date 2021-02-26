@@ -1,8 +1,7 @@
 import numpy as np
-import wt_io
+from WavetableEditor import IO
 from scipy import fft
-from scipy import interpolate, signal
-import pyaudio
+from scipy import interpolate
 import matplotlib.pyplot as plt
 import math
 
@@ -284,4 +283,4 @@ if __name__ == "__main__":
     # wave = np.tile(wave, 10)
     # plt.plot(np.abs(fft.fft(wave)[:100]))
     # plt.show()
-    wt_io.export_mipmap([wt1, wt2], "", "Sine-Saw", 2 ** 14, cycles_per_level=1)
+    IO.export_mipmap([wt1, wt2], "", "Sine-Saw", 2 ** 14, cycles_per_level=1)
